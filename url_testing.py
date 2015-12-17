@@ -4,20 +4,42 @@ import urllib2
 
 from bs4 import BeautifulSoup
 
-# Get Folder
-home = os.path.expanduser("~")
-downloadFolder = os.path.join(home, 'Downloads', 'files')
-if not os.path.exists(downloadFolder):
-    os.makedirs(downloadFolder)
+# # Get Folder
+# home = os.path.expanduser("~")
+# downloadFolder = os.path.join(home, 'Downloads', 'files')
+# if not os.path.exists(downloadFolder):
+#     os.makedirs(downloadFolder)
 
+base_url = 'http://cd.textfiles.com/directory.html'
+sample_url = 'http://cd.textfiles.com/pslv3nv10/GAMES/DOS/MVP/'
 
-# Analysis page structure
-html = urllib2.urlopen('http://cd.textfiles.com/pslv3nv10/GAMES/DOS/MVP/').read()
-soup = BeautifulSoup(html, "lxml")
-print soup.title.string
-for link in soup.find_all('a'):
-    print(link.get('href'))
+another_url = 'http://www.lanzhong.net/youxi1/01.htm'
 
-# Retrive file
+# # Analysis page structure
+# html = urllib2.urlopen(base_url).read()
+# soup = BeautifulSoup(html, "lxml")
+
+# print soup.title.string
+# for link in soup.find_all('a'):
+#     print(link.get('href'))
+
 # fileName = os.path.join(downloadFolder, '1ARCY.ZIP')
 # urllib.urlretrieve("http://cd.textfiles.com/pslv3nv10/GAMES/DOS/MVP/1ARCY.ZIP", fileName)
+
+html_doc = """
+<html><head><title>The Dormouse's story</title></head>
+
+<p class="title"><b>The Dormouse's story</b></p>
+
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
+<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+
+<p class="story">...</p>
+"""
+
+soup = BeautifulSoup(html_doc)
+
+
